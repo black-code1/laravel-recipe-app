@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)
         ->has(
-            Recipe::factory(3)->hasAttached(
+            Recipe::factory(3)->hasAttached(//relation many to many
                 Ingredient::factory(5),[
                     'amount'=> 10,
                     'unit'=> 'cl'
