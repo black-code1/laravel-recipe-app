@@ -12,7 +12,7 @@
                 @csrf
         
                 <x-label value="Titre de la recette" for="title"></x-label>
-                <x-input name="Title" for="title"></x-input>
+                <x-input name="title" id="title"></x-input>
         
                 @foreach (App\Models\Ingredient::all() as $ingredient)
                 <div class="my-5" x-data="{isEnabled: false}">

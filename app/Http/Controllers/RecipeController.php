@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AppRecipe;
+// use App\Models\User;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -35,16 +36,25 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $recipe = auth()->user()->recipes()->create([
+            'title' => $request->title
+        ]);
+
+        $recipe->ingredients()->attach($request->ingredients);
+
+        return redirect()->back();
+        // dd($request->all());
+       
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\AppRecipe  $appRecipe
+     * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function show(AppRecipe $appRecipe)
+    public function show(Recipe $recipe)
     {
         //
     }
@@ -52,10 +62,10 @@ class RecipeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\AppRecipe  $appRecipe
+     * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function edit(AppRecipe $appRecipe)
+    public function edit(Recipe $recipe)
     {
         //
     }
@@ -64,10 +74,10 @@ class RecipeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AppRecipe  $appRecipe
+     * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AppRecipe $appRecipe)
+    public function update(Request $request, Recipe $recipe)
     {
         //
     }
@@ -75,10 +85,10 @@ class RecipeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AppRecipe  $appRecipe
+     * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AppRecipe $appRecipe)
+    public function destroy(Recipe $recipe)
     {
         //
     }
